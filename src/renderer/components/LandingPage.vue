@@ -23,6 +23,7 @@
           <div class="title alt">Other Documentation</div>
           <button class="alt" @click="open('https://electron.atom.io/docs/')">Electron</button>
           <button class="alt" @click="open('https://vuejs.org/v2/guide/')">Vue.js</button>
+          <button class="alt" @click="updateFile()">Update</button>
         </div>
       </div>
     </main>
@@ -30,17 +31,29 @@
 </template>
 
 <script>
-  import SystemInformation from './LandingPage/SystemInformation'
-
+  import SystemInformation from './LandingPage/SystemInformation';
   export default {
     name: 'landing-page',
     components: { SystemInformation },
     methods: {
-      open (link) {
-        this.$electron.shell.openExternal(link)
-      }
-    }
-  }
+      open(link) {
+        this.$electron.shell.openExternal(link);
+      },
+      updateFile() {
+        this.Filewrite('test', 'test content');
+      },
+      Filewrite(name, content) {
+        const fs = require('fs');
+        const fileString = `${name}.txt`;
+        fs.writeFile(fileString, content, (err) => {
+          if (err) {
+            throw err;
+          }
+          alert(`Successfully wrote ${fileString}.`);
+        });
+      },
+    },
+  };
 </script>
 
 <style>

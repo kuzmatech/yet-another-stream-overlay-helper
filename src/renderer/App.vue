@@ -6,8 +6,8 @@
 
 <script>
   export default {
-    name: 'yet-another-stream-overlay-helper'
-  }
+    name: 'yet-another-stream-overlay-helper',
+  };
 </script>
 
 <style>
